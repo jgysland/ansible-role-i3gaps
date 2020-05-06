@@ -1,0 +1,16 @@
+---
+
+# Role: bjornaru.i3gaps
+# File: vars/Archlinux.yml
+
+
+i3gaps_packages:
+  - i3-gaps
+
+i3gaps_extra_packages:
+  - compton
+  - dunst
+  - i3lock
+  - rofi
+
+...

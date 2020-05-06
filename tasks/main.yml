@@ -1,0 +1,26 @@
+---
+
+# Role: bjornaru.i3gaps
+# File: tasks/main.yml
+
+
+- name: Include Arch Linux OS Family spesific variables
+  include_vars: Archlinux.yml
+  when: ansible_os_family == 'Archlinux'
+
+- name: Include Debian OS Family specific variables
+  include_vars: Debian.yml
+  when: ansible_os_family == 'Debian'
+
+- name: Include Fedora specific variables
+  include_vars: Fedora.yml
+  when: ansible_distribution == 'Fedora'
+
+
+- include: install_archlinux.yml
+  when: ansible_os_family == 'Archlinux'
+
+- include: install.yml
+  when: ansible_os_family == 'Debian' or ansible_distribution == 'Fedora'
+
+...

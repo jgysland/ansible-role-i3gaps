@@ -1,0 +1,31 @@
+galaxy_info:
+  author: bjornaru
+  description: fork of i3wm, a tiling window manager for X11
+  company:
+
+  license: license (BSD)
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Arch Linux
+      versions:
+      - all
+    - name: Debian
+      versions:
+      - Buster
+      - Stretch
+    - name: Fedora
+      versions:
+      - 32
+    - name: Ubuntu
+      versions:
+      - focal
+      - bionic
+  galaxy_tags:
+    - window manager
+    - i3
+    - i3-gaps
+
+dependencies: []
+

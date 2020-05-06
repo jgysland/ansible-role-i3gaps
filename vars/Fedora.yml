@@ -1,0 +1,33 @@
+---
+
+# Role: bjornaru.i3gaps
+# File: vars/Fedora.yml
+
+
+i3gaps_build_packages:
+  - automake
+  - gcc
+  - git
+  - libev-devel
+  - libxcb-devel
+  - libXinerama-devel
+  - libxkbcommon-devel
+  - libxkbcommon-x11-devel
+  - libXrandr-devel
+  - make
+  - pango-devel
+  - pcre-devel
+  - startup-notification-devel
+  - xcb-util-cursor-devel
+  - xcb-util-devel
+  - xcb-util-keysyms-devel
+  - xcb-util-wm-devel
+  - xcb-util-xrm-devel
+  - yajl-devel
+i3gaps_extra_packages:
+  - compton
+  - dunst
+  - i3lock
+  - rofi
+
+...

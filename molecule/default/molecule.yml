@@ -1,0 +1,25 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: archlinux
+    image: chriswayg/docker-archlinux-ansible:latest
+    pre_build_image: true
+  - name: debian10
+    image: geerlingguy/docker-debian10-ansible:latest
+    pre_build_image: true
+  - name: fedora32
+    image: geerlingguy/docker-fedora32-ansible:latest
+    pre_build_image: true
+  - name: ubuntu1804
+    image: geerlingguy/docker-ubuntu1804-ansible:latest
+    pre_build_image: true
+  - name: ubuntu2004
+    image: geerlingguy/docker-ubuntu2004-ansible:latest
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

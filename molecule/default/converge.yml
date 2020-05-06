@@ -1,0 +1,28 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+
+  pre_tasks:
+
+    - name: (Arch Linux OS Family) Setup fast mirror
+      become: true
+      raw: echo -e 'Server = http://archlinux.uib.no/$repo/os/$arch' > /etc/pacman.d/mirrorlist && pacman -Syu --noconfirm
+      when: ansible_os_family == 'Archlinux'
+
+    - name: (Debian OS Family) Update apt cache
+      become: true
+      apt:
+        update_cache: true
+      when: ansible_os_family == 'Debian'
+
+    - name: Add user
+      become: true
+      user:
+        name: bjornaru
+
+  roles:
+
+    - role: bjornaru.i3gaps
+
+...
