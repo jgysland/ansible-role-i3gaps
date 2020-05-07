@@ -5,7 +5,7 @@ galaxy_info:
   license: license (BSD)
   min_ansible_version: 2.9
   platforms:
-    - name: Arch Linux
+    - name: ArchLinux
       versions:
       - any
     - name: Debian

@@ -20,7 +20,7 @@
     repo: https://www.github.com/Airblader/i3
     dest: '{{ i3gaps_git_path }}'
     version: '{{ i3gaps_version }}'
-  when: i3.stat.exists == false
+  when: not i3.stat.exists
 
 - name: Configure (autoreconf)
   command:
@@ -32,14 +32,14 @@
   file:
     path: "{{ i3gaps_git_path }}/build"
     state: absent
-  when: i3.stat.exists == false
+  when: not i3.stat.exists
 
 - name: Re-create build directory
   file:
     path: "{{ i3gaps_git_path }}/build"
     state: directory
     mode: 0777
-  when: i3.stat.exists == false
+  when: not i3.stat.exists
 
 - name: Run configure
   command:
@@ -50,13 +50,13 @@
 - name: Run make
   make:
     chdir: "{{ i3gaps_git_path }}/build"
-  when: i3.stat.exists == false
+  when: not i3.stat.exists
 
 - name: Run make install
   make:
     chdir: "{{ i3gaps_git_path }}/build"
     target: install
-  when: i3.stat.exists == false
+  when: not i3.stat.exists
 
 - name: Install extras
   become: yes
