@@ -1,5 +1,6 @@
 galaxy_info:
   author: bjornaru
+  role_name: i3gaps
   description: fork of i3wm, a tiling window manager for X11
   company:
   license: license (BSD)
