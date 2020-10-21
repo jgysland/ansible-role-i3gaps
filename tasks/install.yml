@@ -53,6 +53,7 @@
   when: not i3.stat.exists
 
 - name: Run make install
+  become: yes
   make:
     chdir: "{{ i3gaps_git_path }}/build"
     target: install
