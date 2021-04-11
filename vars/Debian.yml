@@ -3,7 +3,6 @@
 # Role: bjornaru.i3gaps
 # File: vars/Debian.yml
 
-
 i3gaps_build_packages:
   - build-essential
   - dh-autoreconf
@@ -25,6 +24,7 @@ i3gaps_build_packages:
   - libxcb-xrm-dev
   - libxkbcommon-dev
   - libxkbcommon-x11-dev
+  - meson
   - xcb
 
 i3gaps_extra_packages:

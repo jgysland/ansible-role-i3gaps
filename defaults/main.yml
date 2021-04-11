@@ -5,10 +5,11 @@
 
 i3gaps_build_packages_state: present
 i3gaps_extra_packages_state: present
-i3gaps_git_path: /tmp/i3gaps
+i3gaps_git_path: /tmp/i3-gaps
+i3gaps_install_path: /usr/local/bin/i3
 i3gaps_packages_state: present
 i3gaps_version: gaps-next
 
-install_i3gaps_extra_packages: true
+i3gaps_install_extra_packages: false
 
 ...

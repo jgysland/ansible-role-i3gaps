@@ -1,0 +1,52 @@
+---
+
+# Role: bjornaru.i3gaps
+# File: tasks/debian.yml
+
+
+- name: (i3gaps) - Check if i3-gaps is installed (Debian)
+  stat:
+    path: "{{ i3gaps_install_path }}"
+  register: i3
+
+- name: (i3gaps) - Install build dependencies (Debian)
+  become: yes
+  package:
+    name: '{{ i3gaps_build_packages }}'
+    state: '{{ i3gaps_build_packages_state }}'
+
+- name: (i3gaps) - Clone i3-gaps git repo (Debian)
+  git:
+    repo: https://www.github.com/Airblader/i3
+    dest: '{{ i3gaps_git_path }}'
+    version: '{{ i3gaps_version }}'
+  when: not i3.stat.exists
+
+- name: (i3gaps) - Remove build directory (Debian)
+  file:
+    path: "{{ i3gaps_git_path }}/build"
+    state: absent
+  when: not i3.stat.exists
+
+- name: (i3gaps) - Re-create build directory (Debian)
+  file:
+    path: "{{ i3gaps_git_path }}/build"
+    state: directory
+    mode: 0777
+  when: not i3.stat.exists
+
+- name: (i3gaps) - Compile and install (Debian)
+  become: yes
+  command:
+    chdir: "{{ i3gaps_git_path }}/build"
+    cmd: meson .. && ninja && ninja install
+    creates: "{{ i3gaps_install_path }}"
+
+- name: Install extras
+  become: yes
+  package:
+    name: '{{ i3gaps_extra_packages }}'
+    state: '{{ i3gaps_extra_packages_state }}'
+  when: i3gaps_install_extra_packages|bool
+
+...
