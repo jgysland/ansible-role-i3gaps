@@ -39,7 +39,7 @@
   become: yes
   command:
     chdir: "{{ i3gaps_git_path }}/build"
-    cmd: meson .. && ninja && ninja install
+    cmd: sh -c 'meson .. && ninja && ninja install'
     creates: "{{ i3gaps_install_path }}"
 
 - name: Install extras
