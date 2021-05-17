@@ -20,20 +20,20 @@
     repo: https://www.github.com/Airblader/i3
     dest: '{{ i3gaps_git_path }}'
     version: '{{ i3gaps_version }}'
-  when: not i3.stat.exists
+  register: i3_gitclone
 
 - name: (i3gaps) - Remove build directory (Debian)
   file:
     path: "{{ i3gaps_git_path }}/build"
     state: absent
-  when: not i3.stat.exists
+  when: i3_gitclone.changed
 
 - name: (i3gaps) - Re-create build directory (Debian)
   file:
     path: "{{ i3gaps_git_path }}/build"
     state: directory
     mode: 0777
-  when: not i3.stat.exists
+  when: i3_gitclone.changed
 
 - name: (i3gaps) - Compile and install (Debian)
   become: yes
@@ -41,6 +41,7 @@
     chdir: "{{ i3gaps_git_path }}/build"
     cmd: sh -c 'meson .. && ninja && ninja install'
     creates: "{{ i3gaps_install_path }}"
+  when: i3_gitclone.changed
 
 - name: Install extras
   become: yes
